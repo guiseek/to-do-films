@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="ToDoFilms">
+
+<head>
+    <meta charset="utf-8">
+    <title>Nossos filmes (Gui e Vespa)</title>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="todo.js"></script>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="todo.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="page-header">Filmes para assistir</h2>
+                <div ng-controller="TodoFilmsListController as todoFilmsList">
+                    <nav class="navbar">
+                        <h3>Faltam {{todoFilmsList.remaining()}} de {{todoFilmsList.todos.length}} pra assistir</h3>
+                    <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="todo in todoFilmsList.todos">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" ng-model="todo.done">
+                                    <span class="done-{{todo.done}}">{{todo.text}}</span>
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
+                    <form ng-submit="todoFilmsList.addTodo()">
+                        <div class="input-group">
+                            <input class="form-control" type="text" ng-model="todoFilmsList.todoText" size="30" placeholder="Adicionar novo filme">
+                            <span class="input-group-btn">
+                                <button class="btn btn-success" type="button">Adicionar</button>
+                                <button type="button" class="btn btn-warning" ng-click="todoFilmsList.archive()">Limpar assistidos</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
