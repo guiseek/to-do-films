@@ -32,22 +32,6 @@
                         <a href="#/films">Filmes</a>
                     </li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            <i class="glyphicon glyphicon-shopping-cart"></i>
-                            Carrinho
-                            <span class="label label-default">{{ carrinho.length }}</span>
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li ng-show="carrinho.length == 0"><a href="#">Carrinho vazio</a></li>
-                            <li ng-show="carrinho.length > 0"><a href="#" ng-repeat="cerveja in carrinho">{{ cerveja.nome }} ({{ cerveja.cervejaria.nome }})</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li ng-class="{'disabled': carrinho == 0}"><a href="#" ng-click="limpaCarrinho()">Limpar carrinho</a></li>
-                        </ul>
-                    </li>
-                </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
