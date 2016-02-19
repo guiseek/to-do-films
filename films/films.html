@@ -19,16 +19,6 @@
                     Faltam {{vm.remaining()}} de {{vm.films.length}} filmes pra assistir
                 </h3>
             </nav>
-            <div ng-show="!vm.films">Carregando lista de filmes...</div>
-            <div class="list-group" ng-init="vm.findAll()">
-                <a class="list-group-item" ng-repeat="film in vm.films">
-                    <h4 class="list-item-group-heading">
-                        <span class="done-{{film.done}}">{{film.name}}</span>
-                        <input type="checkbox" class="pull-right" ng-model="film.done" ng-click="vm.done(film)">
-                    </h4>
-                    <p class="list-item-group-text">{{film.description}}</p>
-                </a>
-            </div>
             <form ng-submit="vm.create(vm.film)" name="filmForm">
                 <div class="row">
                     <div class="form-group col-md-6 col-sm-12">
@@ -49,6 +39,16 @@
                     </div>
                 </div>
             </form>
+            <div ng-show="!vm.films">Carregando lista de filmes...</div>
+            <div class="list-group" ng-init="vm.findAll()">
+                <a class="list-group-item" ng-repeat="film in vm.films">
+                    <h4 class="list-item-group-heading">
+                        <span class="done-{{film.done}}">{{film.name}}</span>
+                        <input type="checkbox" class="pull-right" ng-model="film.done" ng-click="vm.done(film)">
+                    </h4>
+                    <p class="list-item-group-text">{{film.description}}</p>
+                </a>
+            </div>
         </div>
     </div>
 </div>
