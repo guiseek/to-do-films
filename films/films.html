@@ -41,7 +41,7 @@
             </nav>
             <div ng-show="!vm.films">Carregando lista de filmes...</div>
             <div class="list-group" ng-init="vm.findAll()">
-                <a class="list-group-item" ng-repeat="film in vm.films">
+                <a class="list-group-item" ng-class="{disabled: film.done}" ng-repeat="film in vm.films">
                     <h4 class="list-item-group-heading">
                         <span class="done-{{film.done}}">{{film.name}}</span>
                         <input type="checkbox" class="pull-right" ng-model="film.done" ng-click="vm.done(film)">
