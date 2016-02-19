@@ -19,6 +19,7 @@
                     Faltam {{vm.remaining()}} de {{vm.films.length}} filmes pra assistir
                 </h3>
             </nav>
+            <div ng-show="!vm.films">Carregando lista de filmes...</div>
             <div class="list-group" ng-init="vm.findAll()">
                 <a class="list-group-item" ng-repeat="film in vm.films">
                     <h4 class="list-item-group-heading">
