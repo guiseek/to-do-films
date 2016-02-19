@@ -3,7 +3,10 @@
         <h2 class="page-header">Filmes para assistir</h2>
         <div>
             <nav class="navbar">
-                <h3>Faltam {{vm.remaining()}} de {{vm.films.length}} pra assistir</h3>
+                <h3>
+                    <button type="button" class="btn btn-default pull-right" ng-click="vm.archive()" ng-disabled="vm.remaining() == vm.films.length">Limpar assistidos</button>
+                    Faltam {{vm.remaining()}} de {{vm.films.length}} pra assistir
+                </h3>
             </nav>
             <div class="list-group" ng-init="vm.findAll()">
                 <a href="javascript:void(0)" ng-click="vm.done(film)" class="list-group-item" ng-repeat="film in vm.films">

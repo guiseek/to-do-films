@@ -17,8 +17,8 @@
         this.update = function(film) {
             return $http.put(API.url + 'films/' + film._id, film);
         }
-        this.remove = function(id) {
-            return $http.delete(API.url + 'films/' + id);
+        this.archive = function() {
+            return $http.delete(API.url + 'films/archive');
         }
     }
 })();

@@ -41,22 +41,22 @@
                 count += film.done ? 0 : 1;
             });
             return count;
-        };
+        }
         vm.save = function(film) {
-            if (film._id) {
-                FilmService.update(film).then(function(response) {
+            FilmService.create(film).then(function(response) {
+                vm.success = response.data;
+                vm.findAll();
+                vm.reset();
+            }, function(error) {
+                console.error(error);
+                vm.error = error.data;
+            });
+        }
+        vm.archive = function () {
+            if (confirm('Tem certeza que gostaria de remover os filmes ('+vm.remaining()+') marcados como assistidos?')) {
+                FilmService.archive().then(function(response) {
                     vm.success = response.data;
                     vm.findAll();
-                    vm.reset();
-                },function(error) {
-                    console.log(error);
-                    vm.error = error.data;
-                });
-            } else {
-                FilmService.create(film).then(function(response) {
-                    vm.success = response.data;
-                    vm.findAll();
-                    vm.reset();
                 }, function(error) {
                     console.error(error);
                     vm.error = error.data;
