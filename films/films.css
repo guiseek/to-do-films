@@ -5,3 +5,6 @@
 input[type="checkbox"] {
     cursor: pointer;
 }
+.list-group time {
+    font-size: 12px;
+}

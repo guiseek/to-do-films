@@ -15,7 +15,6 @@
         <div>
             <nav class="navbar">
                 <h3>
-                    <button type="button" class="btn btn-default pull-right" ng-click="vm.archive()" ng-disabled="vm.remaining() == vm.films.length">Limpar assistidos</button>
                     Faltam {{vm.remaining()}} de {{vm.films.length}} filmes pra assistir
                 </h3>
                 <form ng-submit="vm.create(vm.film)" name="filmForm">
@@ -32,8 +31,9 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="pull-right">
-                                <button type="reset" ng-click="vm.reset()" class="btn btn-warning">Limpar</button>
                                 <button class="btn btn-success" ng-disabled="filmForm.$invalid">Salvar</button>
+                                <button type="reset" ng-click="vm.reset()" class="btn btn-danger" ng-disabled="!vm.film.name && !vm.film.description">Limpar</button>
+                                <button type="button" class="btn btn-warning" ng-click="vm.archive()" ng-disabled="vm.remaining() == vm.films.length">Limpar assistidos</button>
                             </div>
                         </div>
                     </div>
@@ -46,7 +46,8 @@
                         <span class="done-{{film.done}}">{{film.name}}</span>
                         <input type="checkbox" class="pull-right" ng-model="film.done" ng-click="vm.done(film)">
                     </h4>
-                    <p class="list-item-group-text">{{film.description}}</p>
+                    <p ng-show="film.description" class="list-item-group-text">{{film.description}}</p>
+                    <time ng-show="film.created">Criado em <em>{{film.created | date:'dd/MM/yyyy HH:mm:ss'}}</em></time>
                 </a>
             </div>
         </div>
