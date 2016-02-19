@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="page-header">Filmes para assistir</h2>
+        <div>
+            <nav class="navbar">
+                <h3>Faltam {{vm.remaining()}} de {{vm.films.length}} pra assistir</h3>
+            </nav>
+            <div class="list-group" ng-init="vm.findAll()">
+                <a href="javascript:void(0)" ng-click="vm.done(film)" class="list-group-item" ng-repeat="film in vm.films">
+                    <h4 class="list-item-group-heading">
+                        <span class="done-{{film.done}}">{{film.name}}</span>
+                        <input type="checkbox" class="pull-right" ng-model="film.done">
+                    </h4>
+                    <p class="list-item-group-text">{{film.description}}</p>
+                </a>
+            </div>
+            <form ng-submit="vm.save(vm.film)" name="filmForm">
+                <div class="row">
+                    <div class="form-group col-md-6 col-sm-12">
+                        <label for="name">Nome</label>
+                        <input type="text" class="form-control" id="name" ng-model="vm.film.name" required autofocus>
+                    </div>
+                    <div class="form-group col-md-6 col-sm-12">
+                        <label for="description">Descrição</label>
+                        <input type="text" class="form-control" id="description" ng-model="vm.film.description">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="pull-right">
+                            <button type="reset" ng-click="vm.reset()" class="btn btn-warning">Limpar</button>
+                            <button class="btn btn-success" ng-disabled="filmForm.$invalid">Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
