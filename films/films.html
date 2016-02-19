@@ -39,9 +39,17 @@
                     <button type="button" class="btn btn-warning pull-right" ng-click="vm.archive()" ng-disabled="vm.remaining() == vm.films.length">Limpar assistidos</button>
                 </h3>
             </nav>
+            <section class="navbar">
+                <h4>Busca filmes</h4>
+                <form name="filmsForm" novalidate>
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="filmSearch" placeholder="Buscar filmes..." aria-describedby="basic-addon1" min-length="3">
+                    </div>
+                </form>
+            </section>
             <div ng-show="!vm.films">Carregando lista de filmes...</div>
             <div class="list-group" ng-init="vm.findAll()">
-                <a class="list-group-item" ng-class="{disabled: film.done}" ng-repeat="film in vm.films">
+                <a class="list-group-item" ng-class="{disabled: film.done}" ng-repeat="film in vm.films | filter: filmSearch">
                     <h4 class="list-item-group-heading">
                         <span class="done-{{film.done}}">{{film.name}}</span>
                         <input type="checkbox" class="pull-right" ng-model="film.done" ng-click="vm.done(film)">
