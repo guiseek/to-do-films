@@ -30,13 +30,13 @@
                             <div class="pull-right">
                                 <button class="btn btn-success" ng-disabled="filmForm.$invalid">Salvar</button>
                                 <button type="reset" ng-click="vm.reset()" class="btn btn-danger" ng-disabled="!vm.film.name && !vm.film.description">Limpar</button>
-                                <button type="button" class="btn btn-warning" ng-click="vm.archive()" ng-disabled="vm.remaining() == vm.films.length">Limpar assistidos</button>
                             </div>
                         </div>
                     </div>
                 </form>
                 <h3>
                     Faltam {{vm.remaining()}} de {{vm.films.length}} filmes pra assistirmos
+                    <button type="button" class="btn btn-warning pull-right" ng-click="vm.archive()" ng-disabled="vm.remaining() == vm.films.length">Limpar assistidos</button>
                 </h3>
             </nav>
             <div ng-show="!vm.films">Carregando lista de filmes...</div>
