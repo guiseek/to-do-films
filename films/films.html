@@ -36,24 +36,34 @@
                 </form>
                 <h3>
                     Faltam {{vm.remaining()}} de {{vm.films.length}} filmes pra assistirmos
-                    <button type="button" class="btn btn-warning pull-right" ng-click="vm.archive()" ng-disabled="vm.remaining() == vm.films.length">Limpar assistidos</button>
                 </h3>
             </nav>
             <section class="navbar">
                 <h4>Busca filmes</h4>
-                <form name="filmsForm" novalidate>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </span>
-                        <input type="text" class="form-control" ng-model="filmSearch" placeholder="Buscar filmes..." aria-describedby="basic-addon1" min-length="3">
+                <div class="row">
+                    <div class="col-md-9">
+                        <form name="filmsForm" novalidate>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </span>
+                                <input type="text" class="form-control" ng-model="filmSearch" placeholder="Buscar filmes..." aria-describedby="basic-addon1" min-length="3">
+                            </div>
+                        </form>
                     </div>
-                </form>
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-warning btn-block pull-right" ng-click="vm.archive()" ng-disabled="vm.remaining() == vm.films.length">
+                            <i class="glyphicon glyphicon-trash"></i>
+                            Limpar assistidos
+                        </button>
+                    </div>
+                </div>
             </section>
             <div ng-show="!vm.films">Carregando lista de filmes...</div>
             <div class="list-group" ng-init="vm.findAll()">
                 <a class="list-group-item" ng-class="{disabled: film.done}" ng-repeat="film in vm.films | filter: filmSearch">
                     <h4 class="list-item-group-heading">
+                        <i class="glyphicon heart" style="cursor: pointer" ng-class="{'glyphicon-heart': film.heart, 'glyphicon-heart-empty': !film.heart}" ng-click="vm.heart(film)"></i>
                         <span class="done-{{film.done}}">{{film.name}}</span>
                         <input type="checkbox" class="pull-right" ng-model="film.done" ng-click="vm.done(film)">
                     </h4>

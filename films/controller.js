@@ -30,6 +30,16 @@
                 vm.error = error.data;
             });
         }
+        vm.heart = function(film) {
+            FilmService.heart(film).then(function(response) {
+                console.log(response);
+                vm.success = response.data;
+                vm.findAll();
+            }, function(error) {
+                console.error(error);
+                vm.error = error.data;
+            });
+        }
         vm.remaining = function () {
             var count = 0;
             angular.forEach(vm.films, function (film) {

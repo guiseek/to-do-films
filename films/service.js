@@ -14,6 +14,9 @@
         this.create = function(film) {
             return $http.post(API.url + 'films', film);
         }
+        this.heart = function(film) {
+            return $http.post(API.url + 'films/' + film._id, film);
+        }
         this.update = function(film) {
             return $http.put(API.url + 'films/' + film._id, film);
         }
