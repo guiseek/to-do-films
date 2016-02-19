@@ -1,11 +1,22 @@
+<link rel="stylesheet" href="films/films.css">
 <div class="row">
     <div class="col-md-12">
         <h2 class="page-header">Filmes para assistir</h2>
+    </div>
+</div>
+<section class="row" ng-show="vm.error || vm.success">
+    <div class="col-md-12">
+        <p class="alert alert-success" ng-show="vm.success">{{ vm.success.message }}</p>
+        <p class="alert alert-danger" ng-show="vm.error">{{ vm.error.message }}</p>
+    </div>
+</section>
+<div class="row">
+    <div class="col-md-12">
         <div>
             <nav class="navbar">
                 <h3>
                     <button type="button" class="btn btn-default pull-right" ng-click="vm.archive()" ng-disabled="vm.remaining() == vm.films.length">Limpar assistidos</button>
-                    Faltam {{vm.remaining()}} de {{vm.films.length}} pra assistir
+                    Faltam {{vm.remaining()}} de {{vm.films.length}} filmes pra assistir
                 </h3>
             </nav>
             <div class="list-group" ng-init="vm.findAll()">

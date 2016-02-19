@@ -1,79 +1,129 @@
-@import "compass/css3";
+/* css heartbeat */
+.icon-heart {
+  height:2em;
+  width:2em;
+  display:inline-block;
+  position:relative;
+}
+.icon-heart:before, 
+.icon-heart:after,
+.icon-heart span:before, 
+.icon-heart span:after {
+  content:"";
+  display:block;
+}
+/* left hump */
+.icon-heart:before {
+  position:absolute;
+  left:.1em;
+  top:0px;
+  transform: rotate(-45deg);
+  background:#d90000;
+  height:2em;
+  width:1.2em;
+  border-top-left-radius: 3em;
+  border-top-right-radius: 3em;
+}
+/* right hump */
+.icon-heart:after {
+  position:absolute;
+  right:.12em;
+  top:0px;
+  transform: rotate(45deg);
+  background:#d90000;
+  height:2em;
+  width:1.2em;
+  border-top-left-radius: 3em;
+  border-top-right-radius: 3em;
+}
+/* the animated dot */
+.icon-heart span.dot:after {
+  height:.2em;
+  width:.2em;
+  left:-.4em;
+  top:50%;
+  background:#fff;
+  position:absolute;
+  z-index:999;
+  border-radius:100%;
+  -webkit-animation: heartbeat 2s linear 0s infinite; /* Chrome, Safari, Opera */
+  animation: heartbeat 2s linear 0s infinite;
+}
+/* straight part of line */
+.icon-heart span.line {
+  height:2px;
+  background:rgba(249,218,255,.5);
+  top:1.1em;
+  position:absolute;
+  left:-.2em;
+  display:block;
+  width:2.4em;
+  z-index:996;
+}
+/* first line peak */
+.icon-heart span.line:before {
+  height:.5em;
+  top:-.27em;
+  position:absolute;
+  left:.4em;
+  display:block;
+  width:.5em;
+  z-index:998;
+  transform: rotate(-45deg);
+  border-top:2px solid rgba(249,218,255,.5);
+  border-right:2px solid rgba(249,218,255,.5);
+  z-index:998;
+  background:#d90000;
+}
+/* second line peak */
+.icon-heart span.line:after {
+  height:.2em;
+  top:-.12em;
+  position:absolute;
+  left:1.2em;
+  display:block;
+  width:.2em;
+  z-index:997;
+  transform: rotate(-45deg);
+  border-top:2px solid rgba(249,218,255,.5);
+  border-right:2px solid rgba(249,218,255,.5);
+  z-index:998;
+  background:#d90000;
+}
+/* /css heartbeat */
 
-#e87: #e87;
-36px: 36px; // must be divisible by 2 and 3
-$heartbeat-rotation: rotate(45deg);
-
-@mixin keyframes($name) {
-  @-webkit-keyframes #{$name} { @content }
-  @-moz-keyframes #{$name} { @content }
-  @-o-keyframes #{$name} { @content }
-  @keyframes #{$name} { @content }
+/* animation css */
+/* Chrome, Safari, Opera */
+@-webkit-keyframes heartbeat {
+  0%   {background:rgba(255,255,255,0); left:-.4em; top:50%;}
+  20%  {background:rgba(255,255,255,.5); left:.2em; top:50%;}
+  35%  {background:rgba(255,255,255,1); left:.4em; top:30%;}
+  45%  {background:rgba(255,255,255,.5); left:.7em; top:50%;}
+  55%  {background:rgba(255,255,255,.5); left:.9em; top:50%;}
+  65%  {background:rgba(255,255,255,1); left:1.1em; top:42%;}
+  75%  {background:rgba(255,255,255,.5); left:1.2em; top:50%;}
+  100% {background:rgba(255,255,255,0); left:2.4em; }
 }
 
-@mixin experimental($property, $value, $moz: true, $webkit: true, $o: true, $ms: true, $khtml: true, $official: true) {
-  @if $webkit   { -webkit-#{$property} : $value; }
-  @if $khtml    {  -khtml-#{$property} : $value; }
-  @if $moz      {    -moz-#{$property} : $value; }
-  @if $ms       {     -ms-#{$property} : $value; }
-  @if $o        {      -o-#{$property} : $value; }
-  @if $official {         #{$property} : $value; }
+/* Standard syntax */
+@keyframes heartbeat {
+  0%   {background:rgba(255,255,255,0); left:-.4em; top:50%;}
+  20%  {background:rgba(255,255,255,.5); left:.2em; top:50%;}
+  35%  {background:rgba(255,255,255,1); left:.4em; top:30%;}
+  45%  {background:rgba(255,255,255,.5); left:.7em; top:50%;}
+  55%  {background:rgba(255,255,255,.5); left:.9em; top:50%;}
+  65%  {background:rgba(255,255,255,1); left:1.1em; top:42%;}
+  75%  {background:rgba(255,255,255,.5); left:1.2em; top:50%;}
+  100% {background:rgba(255,255,255,0); left:2.4em; }
 }
+/* /animation */
 
-@mixin animation($value) {
-  @include experimental(animation, $value);
+/* for this presentation, not required */
+body { 
+  text-align:center;
+  padding:13% 0 20px 0;
 }
-
-keyframes(heartbeat) {
-  0%  { transform: rotate(45deg), scale(1); }
-  14% { transform: rotate(45deg) scale(1.); }
-  28% { transform: rotate(45deg) scale(1);   }
-  42% { transform: rotate(45deg) scale(1.); }
-  70% { transform: rotate(45deg) scale(1);   }
+.icon-heart {
+  zoom:3;/* make the heart big */
 }
-
-body {
-  text-align: center;
-  padding: 50px;
-}
-
-/* Styles for old versions of IE */
-.heartbeat {
-  font-family: sans-serif;
-  font-weight: 100;
-}
-
-/* :not(:required) hides this rule from IE9 and below */
-.heartbeat:not(:required) {
-  animation: heartbeat 1300ms ease 0s infinite normal;
-  
-  display: inline-block;
-  position: relative;  
-  overflow: hidden;
-  text-indent: -9999px;
-  width: 36px;  
-  height: 36px;
-  transform: rotate(45deg) scale(1);
-  transform-origin: 50%, 50%;
-}
-.heartbeat:not(:required):after, .heartbeat:not(:required):before {
-    position: absolute;
-    content: "";  
-    background: #e87;
-}
-  
-.heartbeat:not(:required):before {
-    border-left-radius: 12px;
-    top: 12px;
-    left: 0;
-    width: 36px;
-    height: (24px);
-}
-  
-.heartbeat:not(:required):after {
-    border-top-radius: 12px;
-    top: 0;
-    left: 12px;
-    width: 24px;
-    height: 12px;
-}
+/* /not required */
