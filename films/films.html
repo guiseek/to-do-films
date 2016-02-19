@@ -14,9 +14,6 @@
     <div class="col-md-12">
         <div>
             <nav class="navbar">
-                <h3>
-                    Faltam {{vm.remaining()}} de {{vm.films.length}} filmes pra assistir
-                </h3>
                 <form ng-submit="vm.create(vm.film)" name="filmForm">
                     <div class="row">
                         <div class="form-group col-md-6 col-sm-12">
@@ -38,6 +35,9 @@
                         </div>
                     </div>
                 </form>
+                <h3>
+                    Faltam {{vm.remaining()}} de {{vm.films.length}} filmes pra assistir
+                </h3>
             </nav>
             <div ng-show="!vm.films">Carregando lista de filmes...</div>
             <div class="list-group" ng-init="vm.findAll()">

@@ -25,7 +25,6 @@
             FilmService.update(film).then(function(response) {
                 vm.success = response.data;
                 vm.findAll();
-                vm.reset();
             },function(error) {
                 console.error(error);
                 vm.error = error.data;
