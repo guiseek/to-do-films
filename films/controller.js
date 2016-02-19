@@ -21,12 +21,8 @@
         vm.reset = function() {
             vm.film = angular.copy(vm.empty);
         }
-        vm.populate = function(film) {
-            vm.film = angular.copy(film);
-        }
         vm.done = function(film) {
             FilmService.update(film).then(function(response) {
-                console.log(response);
                 vm.success = response.data;
                 vm.findAll();
                 vm.reset();
@@ -42,7 +38,7 @@
             });
             return count;
         }
-        vm.save = function(film) {
+        vm.create = function(film) {
             FilmService.create(film).then(function(response) {
                 vm.success = response.data;
                 vm.findAll();
@@ -53,19 +49,8 @@
             });
         }
         vm.archive = function () {
-            if (confirm('Tem certeza que gostaria de remover os filmes ('+vm.remaining()+') marcados como assistidos?')) {
+            if (confirm('Tem certeza que gostaria de remover os '+(vm.films.length - vm.remaining())+' filmes marcados como assistidos?')) {
                 FilmService.archive().then(function(response) {
-                    vm.success = response.data;
-                    vm.findAll();
-                }, function(error) {
-                    console.error(error);
-                    vm.error = error.data;
-                });
-            }
-        }
-        vm.remove = function(film) {
-            if (confirm('Tem certeza que gostaria de remover o filme ' + film.name + '?')) {
-                FilmService.remove(film._id).then(function(response) {
                     vm.success = response.data;
                     vm.findAll();
                 }, function(error) {

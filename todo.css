@@ -2,3 +2,6 @@
   text-decoration: line-through;
   color: grey;
 }
+input[type="checkbox"] {
+    cursor: pointer;
+}

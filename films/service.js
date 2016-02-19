@@ -18,7 +18,7 @@
             return $http.put(API.url + 'films/' + film._id, film);
         }
         this.archive = function() {
-            return $http.delete(API.url + 'films/archive');
+            return $http.delete(API.url + 'films');
         }
     }
 })();
