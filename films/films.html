@@ -1,9 +1,4 @@
 <link rel="stylesheet" href="films/films.css">
-<div class="row">
-    <div class="col-md-12">
-        <h2 class="page-header">Filmes para assistir</h2>
-    </div>
-</div>
 <section class="row" ng-show="vm.error || vm.success">
     <div class="col-md-12">
         <p class="alert alert-success" ng-show="vm.success">{{ vm.success.message }}</p>
@@ -12,8 +7,41 @@
 </section>
 <div class="row">
     <div class="col-md-12">
+        <section>
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="page-header">Procurar filmes</h3>
+                </div>
+            </div>
+            <form name="searchForm" autocomplete="off" novalidate>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </span>
+                            <input type="text" class="form-control" id="Title" ng-change="vm.searchFilmsRemote(vm.search)" ng-model-options="{debounce: 1000}" ng-model="vm.search" required autofocus>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div ng-show="vm.search && !vm.results">Procurando filmes...</div>
+            <div class="list-group">
+                <a href="javascript:void(0)" ng-click="vm.populate(result)" class="list-group-item" ng-repeat="result in vm.results.Search">
+                    <h4 class="list-group-item-heading">{{result.Title}}</h4>
+                    <p class="list-group-item-text">
+                        Ano: {{result.Year}}
+                    </p>
+                </a>
+            </div>
+        </section>
         <div>
             <nav class="navbar">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="page-header">Salvar filme</h3>
+                    </div>
+                </div>
                 <form ng-submit="vm.create(vm.film)" name="filmForm">
                     <div class="row">
                         <div class="form-group col-md-6 col-sm-12">
@@ -34,12 +62,8 @@
                         </div>
                     </div>
                 </form>
-                <h3>
-                    Faltam {{vm.remaining()}} de {{vm.films.length}} filmes pra assistirmos
-                </h3>
             </nav>
             <section class="navbar">
-                <h4>Busca filmes</h4>
                 <div class="row">
                     <div class="col-md-9">
                         <form name="filmsForm" novalidate>
@@ -63,14 +87,22 @@
             <div class="list-group" ng-init="vm.findAll()">
                 <a class="list-group-item" ng-class="{disabled: film.done}" ng-repeat="film in vm.films | filter: filmSearch">
                     <h4 class="list-item-group-heading">
-                        <i class="glyphicon heart" style="cursor: pointer" ng-class="{'glyphicon-heart': film.heart, 'glyphicon-heart-empty': !film.heart}" ng-click="vm.heart(film)"></i>
                         <span class="done-{{film.done}}">{{film.name}}</span>
                         <input type="checkbox" class="pull-right" ng-model="film.done" ng-click="vm.done(film)">
                     </h4>
-                    <p ng-show="film.description" class="list-item-group-text">{{film.description}}</p>
+                    <p ng-show="film.description" class="list-item-group-text">
+                        {{film.description}}
+                        <span class="pull-right">
+                            <i class="glyphicon" style="font-size: 24px; color: #337AB7; cursor: pointer" ng-class="{'glyphicon-heart': film.he_liked, 'glyphicon-heart-empty': !film.he_liked}" ng-click="vm.like(film, 'he')"></i>
+                            <i class="glyphicon" style="font-size: 24px; color: #f0ad4e; cursor: pointer" ng-class="{'glyphicon-heart': film.she_liked, 'glyphicon-heart-empty': !film.she_liked}" ng-click="vm.like(film, 'she')"></i>
+                        </span>
+                    </p>
                     <time ng-show="film.created">Criado em <em>{{film.created | date:'dd/MM/yyyy HH:mm:ss'}}</em></time>
                 </a>
             </div>
+            <h4>
+                Faltam {{vm.remaining()}} de {{vm.films.length}} filmes pra assistirmos
+            </h4>
         </div>
     </div>
 </div>
