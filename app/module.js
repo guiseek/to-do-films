@@ -2,7 +2,7 @@
     'use strict';
     
     angular
-        .module('app', ['ngRoute', 'films'])
+        .module('app', ['ngRoute','films'])
         .config(Config);
     
     function Config($routeProvider) {

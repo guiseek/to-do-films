@@ -21,17 +21,29 @@
                                 <i class="glyphicon glyphicon-search"></i>
                             </span>
                             <input type="text" class="form-control" id="Title" ng-change="vm.searchFilmsRemote(vm.search)" ng-model-options="{debounce: 1000}" ng-model="vm.search" required autofocus>
+                            <span ng-show="vm.results.totalResults" class="input-group-addon">
+                                <strong>{{vm.results.totalResults}}</strong> filmes encontrados para o termo <strong>{{vm.search}}</strong>.
+                            </span>
                         </div>
                     </div>
                 </div>
             </form>
             <div ng-show="vm.search && !vm.results">Procurando filmes...</div>
+            <div ng-show="vm.results.Response == 'False'" class="alert alert-warning">{{vm.results.Error}}</div>
             <div class="list-group">
                 <a href="javascript:void(0)" ng-click="vm.populate(result)" class="list-group-item" ng-repeat="result in vm.results.Search">
-                    <h4 class="list-group-item-heading">{{result.Title}}</h4>
-                    <p class="list-group-item-text">
-                        Ano: {{result.Year}}
-                    </p>
+                    <div class="row">
+                        <div class="col-md-2 col-sm-2 col-xs-3">
+                            <img ng-show="{{result.Poster == 'N/A'}}" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=Sem%20poster&w=120&h=120" alt="Sem poster">
+                            <img ng-show="{{result.Poster != 'N/A'}}" ng-src="{{result.Poster}}" class="img-thumbnail img-responsive" alt="{{result.Title}}">
+                        </div>
+                        <div class="col-md-10 col-sm-10 col-xs-9">
+                            <h1 class="list-group-item-heading">{{result.Title}}</h1>
+                            <p class="list-group-item-text">
+                                Ano: {{result.Year}}
+                            </p>
+                        </div>
+                    </div>
                 </a>
             </div>
         </section>

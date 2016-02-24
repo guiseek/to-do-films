@@ -14,6 +14,7 @@
         vm.searchFilmsRemote = function (search) {
             FilmService.findRemote(search).then(function (response) {
                 vm.results = response.data;
+                console.log(vm.results);
             }, function (error) {
                 console.error(error);
             });
