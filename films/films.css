@@ -6,8 +6,20 @@ input[type="checkbox"] {
     cursor: pointer;
 }
 .list-group time {
+    display: block;
     font-size: 12px;
 }
-.heart {
-    color: pink;
+.list-group .glyphicon {
+    margin-left: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+.list-group .glyphicon.he {
+    color: #337AB7;
+}
+.list-group .glyphicon.she {
+    color: #f0ad4e;
+}
+.list-group .glyphicon.glyphicon-trash {
+    color: #d9534f;
 }
