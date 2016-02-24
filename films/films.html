@@ -34,8 +34,8 @@
                 <a href="javascript:void(0)" ng-click="vm.populate(result)" class="list-group-item" ng-repeat="result in vm.results.Search">
                     <div class="row">
                         <div class="col-md-2 col-sm-2 col-xs-3">
-                            <img ng-show="{{result.Poster == 'N/A'}}" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=Sem%20poster&w=120&h=120" alt="Sem poster">
-                            <img ng-show="{{result.Poster != 'N/A'}}" ng-src="{{result.Poster}}" class="img-thumbnail img-responsive" alt="{{result.Title}}">
+                            <img ng-if="result.Poster == 'N/A'" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=Sem%20poster&w=200&h=200" class="img-thumbnail img-responsive" alt="Sem poster">
+                            <img ng-if="result.Poster != 'N/A'" ng-src="{{result.Poster}}" class="img-thumbnail img-responsive" alt="{{result.Title}}">
                         </div>
                         <div class="col-md-10 col-sm-10 col-xs-9">
                             <h1 class="list-group-item-heading">{{result.Title}}</h1>
