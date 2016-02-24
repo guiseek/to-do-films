@@ -24,6 +24,9 @@
         this.create = function(film) {
             return $http.post(API.url + 'films', film);
         }
+        this.remove = function(film) {
+            return $http.delete(API.url + 'films/' + film._id);
+        }
         this.like = function(film, who) {
             return $http.get(API.url + 'films/' + film._id + '/like/' + who);
         }

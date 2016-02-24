@@ -43,6 +43,17 @@
                 vm.error = error.data;
             });
         }
+        vm.remove = function (film) {
+            if (confirm('Tem certeza que gostaria de remover o filme ' + film.name + '?')) {
+                FilmService.remove(film).then(function (response) {
+                    vm.success = response.data;
+                    vm.findAll();
+                }, function (error) {
+                    console.error(error);
+                    vm.error = error.data;
+                });
+            }
+        }
         vm.like = function (film, who) {
             FilmService.like(film, who).then(function (response) {
                 vm.success = response.data;
