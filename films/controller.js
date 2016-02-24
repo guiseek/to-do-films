@@ -21,6 +21,9 @@
         }
         vm.populate = function (result) {
             vm.film = { name: result.Title };
+            if (result.Poster != 'N/A') {
+                vm.film['poster'] = result.Poster;
+            } 
             vm.results = [];
             document.querySelector('#description').focus();
         }
