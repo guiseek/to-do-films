@@ -33,11 +33,11 @@
             <div class="list-group">
                 <a href="javascript:void(0)" ng-click="vm.populate(result)" class="list-group-item" ng-repeat="result in vm.results.Search">
                     <div class="row">
-                        <div class="col-md-2 col-sm-2 col-xs-3">
+                        <!--<div class="col-md-2 col-sm-2 col-xs-3">
                             <img ng-if="result.Poster == 'N/A'" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=Sem%20poster&w=200&h=200" class="img-thumbnail img-responsive" alt="Sem poster">
                             <img ng-if="result.Poster != 'N/A'" ng-src="{{result.Poster}}" class="img-thumbnail img-responsive" alt="{{result.Title}}">
-                        </div>
-                        <div class="col-md-10 col-sm-10 col-xs-9">
+                        </div>-->
+                        <div class="col-md-12">
                             <h1 class="list-group-item-heading">{{result.Title}}</h1>
                             <p class="list-group-item-text">
                                 Ano: {{result.Year}}
@@ -100,11 +100,11 @@
             <div class="list-group" ng-init="vm.findAll()">
                 <a class="list-group-item" ng-class="{disabled: film.done}" ng-repeat="film in vm.films | filter: filmSearch">
                     <div class="row">
-                        <div class="col-md-2 col-sm-2 col-xs-3">
+                        <!--<div class="col-md-2 col-sm-2 col-xs-3">
                             <img ng-if="!film.poster" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=Sem%20poster&w=200&h=200" class="img-thumbnail img-responsive" alt="Sem poster">
                             <img ng-if="film.poster" ng-src="{{film.poster}}" class="img-thumbnail img-responsive" alt="{{film.Title}}">
-                        </div>
-                        <div class="col-md-10 col-sm-10 col-xs-9">
+                        </div>-->
+                        <div class="col-md-12">
                             <h1 class="list-item-group-heading">
                                 <span class="done-{{film.done}}">{{film.name}}</span>
                                 <input type="checkbox" class="pull-right" ng-model="film.done" ng-click="vm.done(film)">
